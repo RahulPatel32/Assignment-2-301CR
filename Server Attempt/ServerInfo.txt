@@ -1,0 +1,7 @@
+This Code is primarily theoretical as unfortunately I am unable to get my Visual Studio to run or 
+compile or even do anything with the code at all.
+
+Unfortunatley this means I have no actual idea whhether or not the code actually works so if you 
+want ot try and it to see if it worls be my guest.
+
+	Sincerely Chase

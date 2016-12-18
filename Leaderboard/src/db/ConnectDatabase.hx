@@ -37,12 +37,7 @@ class ConnectDatabase
 		{
 			sys.db.TableCreate.create(Player.manager);
 		}
-		
-		//if ( !sys.db.TableCreate.exists(Score.manager) )
-		//{
-			//sys.db.TableCreate.create(Score.manager);
-		//}
-
+	
 	}
 
 	

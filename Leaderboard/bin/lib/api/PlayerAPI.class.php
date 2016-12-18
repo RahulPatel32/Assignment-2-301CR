@@ -6,14 +6,34 @@ class api_PlayerAPI {
 	public function addPlayer() {
 		$p = new db_Player();
 		$data = php_Web::getParams();
-		$p->name = $data->get("name");
-		$p->location = $data->get("location");
-		$p->value = 20;
-		$p->date = Date::now();
+		$jsonData = $data->get("info");
+		$jsonString = haxe_Json::phpJsonDecode($jsonData);
+		$p->name = $jsonString->Name;
+		$p->location = $jsonString->Location;
+		$p->value = $jsonString->Value;
+		$tmp = Date::now();
+		$p->date = api_PlayerAPI::convertToSQLDateTime($tmp);
 		db_ConnectDatabase::Connect();
 		$p->insert();
 		db_ConnectDatabase::disconnect();
 		php_Lib::hprint("player added");
+		api_ReturnData::Backup();
+	}
+	static function convertToSQLDateTime($h_date) {
+		$t_date = null;
+		$tmp = $h_date->getFullYear();
+		$tmp1 = _hx_string_rec($tmp, "") . "-";
+		$tmp2 = $h_date->getMonth();
+		$tmp3 = _hx_string_or_null($tmp1) . _hx_string_rec(($tmp2 + 1), "") . "-";
+		$tmp4 = $h_date->getDate();
+		$tmp5 = _hx_string_or_null($tmp3) . _hx_string_rec($tmp4, "") . " ";
+		$tmp6 = $h_date->getHours();
+		$tmp7 = _hx_string_or_null($tmp5) . _hx_string_rec($tmp6, "") . ":";
+		$tmp8 = $h_date->getMinutes();
+		$tmp9 = _hx_string_or_null($tmp7) . _hx_string_rec($tmp8, "") . ":";
+		$tmp10 = $h_date->getSeconds();
+		$t_date = _hx_string_or_null($tmp9) . _hx_string_rec($tmp10, "");
+		return $t_date;
 	}
 	function __toString() { return 'api.PlayerAPI'; }
 }

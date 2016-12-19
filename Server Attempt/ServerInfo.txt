@@ -2,6 +2,11 @@ This Code is primarily theoretical as unfortunately I am unable to get my Visual
 compile or even do anything with the code at all.
 
 Unfortunatley this means I have no actual idea whhether or not the code actually works so if you 
-want ot try and it to see if it worls be my guest.
+want ot try and it to see if it works be my guest.
+
+Append 19/12/2016
+	Disreagard the above as I have just notice that all my CPP files are now AWOL 
+	and I have no clue what-so-ever where they are rendering this entire upload and commit
+	utterly pointless my apologies.
 
 	Sincerely Chase

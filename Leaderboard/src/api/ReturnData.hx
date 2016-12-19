@@ -33,15 +33,15 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 		var cnx = sys.db.Mysql.connect({
 			   host : "localhost",
 			   port : 3306,
-			   user : "root",
-			   pass : "",
-			   database : "leaderboard", 
+			   user : "leaderbo_Rahul",
+			   pass : "123Admin123",
+			   database : "leaderbo_Leaderboard", 
 			   socket : null,
 			});
 	
 			var JsonArray = new Array(); //create empty array to store json data
 			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM player"); // request all player information
+			var Request = cnx.request("SELECT * FROM Player"); // request all player information
 			
 			
 			//request information from the table headings 
@@ -58,15 +58,15 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 		var cnx = sys.db.Mysql.connect({
 			   host : "localhost",
 			   port : 3306,
-			   user : "root",
-			   pass : "",
-			   database : "leaderboard", 
+			   user : "leaderbo_Rahul",
+			   pass : "123Admin123",
+			   database : "leaderbo_Leaderboard", 
 			   socket : null,
 			});
 	
 			var JsonArray = new Array(); //create empty array to store json data
 			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM player WHERE location ='" + location + "' ORDER by value DESC LIMIT 10"); // request player location from player table
+			var Request = cnx.request("SELECT * FROM Player WHERE location ='" + location + "' ORDER by value DESC LIMIT 10"); // request player location from player table
 			
 			
 			//request information from the table headings
@@ -85,15 +85,15 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 		var cnx = sys.db.Mysql.connect({
 			   host : "localhost",
 			   port : 3306,
-			   user : "root",
-			   pass : "",
-			   database : "leaderboard", 
+			   user : "leaderbo_Rahul",
+			   pass : "123Admin123",
+			   database : "leaderbo_Leaderboard", 
 			   socket : null,
 			});
 	
 			var JsonArray = new Array(); //create empty array to store json data
 			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM player WHERE name ='" + name + "' ORDER by value DESC"); // request all player information
+			var Request = cnx.request("SELECT * FROM Player WHERE name ='" + name + "' ORDER by value DESC"); // request all player information
 			
 			
 			//request information from the table headings 
@@ -112,33 +112,33 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 		var cnx = sys.db.Mysql.connect({
 			   host : "localhost",
 			   port : 3306,
-			   user : "root",
-			   pass : "",
-			   database : "leaderboard", 
+			   user : "leaderbo_Rahul",
+			   pass : "123Admin123",
+			   database : "leaderbo_Leaderboard", 
 			   socket : null,
 			});
 	
 			var JsonArray = new Array(); //create empty array to store json data
 			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("DELETE FROM player WHERE id ='" + id + "'"); // request all player information
+			var Request = cnx.request("DELETE FROM Player WHERE id ='" + id + "'"); // request all player information
 			
 	}
 	
 //Get weekly score 
 	public static function Weekly()
 	{
-		var cnx = sys.db.Mysql.connect({
+	var cnx = sys.db.Mysql.connect({
 			   host : "localhost",
 			   port : 3306,
-			   user : "root",
-			   pass : "",
-			   database : "leaderboard", 
+			   user : "leaderbo_Rahul",
+			   pass : "123Admin123",
+			   database : "leaderbo_Leaderboard", 
 			   socket : null,
 			});
 	
 			var JsonArray = new Array(); //create empty array to store json data
 			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM player WHERE date BETWEEN'" + Date.fromTime(Date.now().getTime() - 7*24*3600*1000).toString() + "'AND'" + Date.now().toString() + "' ORDER by value DESC"); // request all player information
+			var Request = cnx.request("SELECT * FROM Player WHERE date BETWEEN'" + Date.fromTime(Date.now().getTime() - 7*24*3600*1000).toString() + "'AND'" + Date.now().toString() + "' ORDER by value DESC"); // request all player information
 			
 			
 			//request information from the table headings 
@@ -156,15 +156,15 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 		var cnx = sys.db.Mysql.connect({
 			   host : "localhost",
 			   port : 3306,
-			   user : "root",
-			   pass : "",
-			   database : "leaderboard", 
+			   user : "leaderbo_Rahul",
+			   pass : "123Admin123",
+			   database : "leaderbo_Leaderboard", 
 			   socket : null,
 			});
 	
 			var JsonArray = new Array(); //create empty array to store json data
 			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM player"); // request all player information
+			var Request = cnx.request("SELECT * FROM Player"); // request all player information
 			
 			
 			//request information from the table headings 

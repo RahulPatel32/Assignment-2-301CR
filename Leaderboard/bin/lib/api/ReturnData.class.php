@@ -20,10 +20,10 @@ class api_ReturnData {
 		return Date::fromString($t_date);
 	}
 	static function ReturnAll() {
-		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "root", "pass" => "", "database" => "leaderboard", "socket" => null)));
+		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "leaderbo_Rahul", "pass" => "123Admin123", "database" => "leaderbo_Leaderboard", "socket" => null)));
 		$JsonArray = new _hx_array(array());
 		$info = _hx_anonymous(array("data" => $JsonArray));
-		$Request = $cnx->request("SELECT * FROM player");
+		$Request = $cnx->request("SELECT * FROM Player");
 		while(true) {
 			$tmp = !$Request->hasNext();
 			if($tmp) {
@@ -38,10 +38,10 @@ class api_ReturnData {
 		php_Lib::hprint($tmp2);
 	}
 	static function Location($location) {
-		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "root", "pass" => "", "database" => "leaderboard", "socket" => null)));
+		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "leaderbo_Rahul", "pass" => "123Admin123", "database" => "leaderbo_Leaderboard", "socket" => null)));
 		$JsonArray = new _hx_array(array());
 		$info = _hx_anonymous(array("data" => $JsonArray));
-		$Request = $cnx->request("SELECT * FROM player WHERE location ='" . _hx_string_or_null($location) . "' ORDER by value DESC LIMIT 10");
+		$Request = $cnx->request("SELECT * FROM Player WHERE location ='" . _hx_string_or_null($location) . "' ORDER by value DESC LIMIT 10");
 		while(true) {
 			$tmp = !$Request->hasNext();
 			if($tmp) {
@@ -56,10 +56,10 @@ class api_ReturnData {
 		php_Lib::hprint($tmp2);
 	}
 	static function PlayerScores($name) {
-		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "root", "pass" => "", "database" => "leaderboard", "socket" => null)));
+		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "leaderbo_Rahul", "pass" => "123Admin123", "database" => "leaderbo_Leaderboard", "socket" => null)));
 		$JsonArray = new _hx_array(array());
 		$info = _hx_anonymous(array("data" => $JsonArray));
-		$Request = $cnx->request("SELECT * FROM player WHERE name ='" . _hx_string_or_null($name) . "' ORDER by value DESC");
+		$Request = $cnx->request("SELECT * FROM Player WHERE name ='" . _hx_string_or_null($name) . "' ORDER by value DESC");
 		while(true) {
 			$tmp = !$Request->hasNext();
 			if($tmp) {
@@ -74,17 +74,17 @@ class api_ReturnData {
 		php_Lib::hprint($tmp2);
 	}
 	static function Delete($id) {
-		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "root", "pass" => "", "database" => "leaderboard", "socket" => null)));
+		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "leaderbo_Rahul", "pass" => "123Admin123", "database" => "leaderbo_Leaderboard", "socket" => null)));
 		new _hx_array(array());
-		$cnx->request("DELETE FROM player WHERE id ='" . _hx_string_or_null($id) . "'");
+		$cnx->request("DELETE FROM Player WHERE id ='" . _hx_string_or_null($id) . "'");
 	}
 	static function Weekly() {
-		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "root", "pass" => "", "database" => "leaderboard", "socket" => null)));
+		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "leaderbo_Rahul", "pass" => "123Admin123", "database" => "leaderbo_Leaderboard", "socket" => null)));
 		$JsonArray = new _hx_array(array());
 		$info = _hx_anonymous(array("data" => $JsonArray));
 		$tmp = Date::now()->getTime();
 		$tmp1 = Date::fromTime($tmp - 604800000)->toString();
-		$tmp2 = "SELECT * FROM player WHERE date BETWEEN'" . _hx_string_or_null($tmp1) . "'AND'";
+		$tmp2 = "SELECT * FROM Player WHERE date BETWEEN'" . _hx_string_or_null($tmp1) . "'AND'";
 		$tmp3 = Date::now()->toString();
 		$Request = $cnx->request(_hx_string_or_null($tmp2) . _hx_string_or_null($tmp3) . "' ORDER by value DESC");
 		while(true) {
@@ -101,10 +101,10 @@ class api_ReturnData {
 		php_Lib::hprint($tmp6);
 	}
 	static function Backup() {
-		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "root", "pass" => "", "database" => "leaderboard", "socket" => null)));
+		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "leaderbo_Rahul", "pass" => "123Admin123", "database" => "leaderbo_Leaderboard", "socket" => null)));
 		$JsonArray = new _hx_array(array());
 		$info = _hx_anonymous(array("data" => $JsonArray));
-		$Request = $cnx->request("SELECT * FROM player");
+		$Request = $cnx->request("SELECT * FROM Player");
 		while(true) {
 			$tmp = !$Request->hasNext();
 			if($tmp) {

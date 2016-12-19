@@ -4,7 +4,7 @@
 class db_ConnectDatabase {
 	public function __construct(){}
 	static function Connect() {
-		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "root", "pass" => "", "database" => "leaderboard", "socket" => null)));
+		$cnx = sys_db_Mysql::connect(_hx_anonymous(array("host" => "localhost", "port" => 3306, "user" => "leaderbo_Rahul", "pass" => "123Admin123", "database" => "leaderbo_Leaderboard", "socket" => null)));
 		sys_db_Manager::set_cnx($cnx);
 		sys_db_Manager::initialize();
 	}

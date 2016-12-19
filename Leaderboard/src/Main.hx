@@ -69,6 +69,12 @@ class Main
 			
 			ReturnData.Weekly(); //return all scores of player URL
 		}
+		
+		else if (d.parts[len-1] == "ReturnBackup")
+		{
+			
+			ReturnData.Backup(); //create backup file
+		}
 	}
 
 

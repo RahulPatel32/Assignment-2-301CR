@@ -45,6 +45,11 @@ class Main {
 								$tmp8 = $d->parts[$len - 1];
 								if($tmp8 === "ReturnWeekly") {
 									api_ReturnData::Weekly();
+								} else {
+									$tmp9 = $d->parts[$len - 1];
+									if($tmp9 === "ReturnBackup") {
+										api_ReturnData::Backup();
+									}
 								}
 							}
 						}

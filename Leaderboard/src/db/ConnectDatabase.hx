@@ -9,6 +9,9 @@ import sys.db.Manager;
 
  /**
   * Connect/disconnect database class
+  * User matches the name admin username for database
+  * Pass to grant admin access to leaderboard
+  * Database must match name of the database for the leaderboard
   */
 class ConnectDatabase 
 {

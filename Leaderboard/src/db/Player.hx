@@ -11,6 +11,10 @@ import sys.db.Types.SDateTime;
  * @author Rahul
  */
 
+ 
+ /**
+  * Create variables for the data to be stored on players in the leaderboard
+  */
 class Player extends Object 
 {
 

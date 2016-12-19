@@ -10,6 +10,13 @@ import sys.io.File;
  * ...
  * @author Rahul
  */
+
+ 
+ /**
+  * Class to return data from paramters set in the URL
+  * Convert the Haxe DateTime to SQL DateTime for the SQL database
+  * Functions to request different data, (ReturnAll, Location, PlayerScores, Weekly, Delete and Backup Leaderboard data) 
+  */
 class ReturnData 
 {
 
@@ -27,7 +34,13 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 		return Date.fromString(t_date);
 	}
 	
-	//funtion to return all player data
+	/**
+	 * Function to return all data from leaderboard table
+	 * Create a new JSON array to store extracted data
+	 * After "info" in URL, store data 
+	 * Perform request to get all data from the Player table
+	 * Convert data to JSON string
+	 */
 	public static function ReturnAll()
 	{
 		var cnx = sys.db.Mysql.connect({
@@ -39,9 +52,9 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 			   socket : null,
 			});
 	
-			var JsonArray = new Array(); //create empty array to store json data
-			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM Player"); // request all player information
+			var JsonArray = new Array(); 
+			var info = {data:JsonArray}; 
+			var Request = cnx.request("SELECT * FROM Player");
 			
 			
 			//request information from the table headings 
@@ -49,10 +62,16 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 				info.data.push({Name: row.name, Location: row.location, Value: row.value, Time: convertToHaxeDateTime(row.date)});
 			
 			}
-			Lib.print(Json.stringify(info)); //convert json information into string for parser to display data
+			Lib.print(Json.stringify(info)); 
 	}
 	
-	//function to return player specific demographic Area API
+	/**
+	 * Function to return all data from leaderboard table by location
+	 * Create a new JSON array to store extracted data
+	 * After "info" in URL, store data 
+	 * Perform request to get all data from the Player table where location matches specified user input and order by top 10
+	 * Convert data to JSON string
+	 */
 	public static function Location(location:String)
 	{
 		var cnx = sys.db.Mysql.connect({
@@ -64,9 +83,9 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 			   socket : null,
 			});
 	
-			var JsonArray = new Array(); //create empty array to store json data
-			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM Player WHERE location ='" + location + "' ORDER by value DESC LIMIT 10"); // request player location from player table
+			var JsonArray = new Array(); 
+			var info = {data:JsonArray}; 
+			var Request = cnx.request("SELECT * FROM Player WHERE location ='" + location + "' ORDER by value DESC LIMIT 10");
 			
 			
 			//request information from the table headings
@@ -74,12 +93,18 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 				info.data.push({Name: row.name, Location: row.location, Value: row.value, Time: convertToHaxeDateTime(row.date)});
 			
 			}
-			Lib.print(Json.stringify(info)); //convert json information into string for parser to display data
+			Lib.print(Json.stringify(info)); 
 	}
 	
 
 
-	//function to return player history scores
+	/**
+	 * Function to return all data from leaderboard table by location
+	 * Create a new JSON array to store extracted data
+	 * After "info" in URL, store data 
+	 * Perform request to get all data from the Player table where name matches specified user input and order by top 10
+	 * Convert data to JSON string
+	 */
 	public static function PlayerScores(name:String)
 	{
 		var cnx = sys.db.Mysql.connect({
@@ -91,9 +116,9 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 			   socket : null,
 			});
 	
-			var JsonArray = new Array(); //create empty array to store json data
-			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM Player WHERE name ='" + name + "' ORDER by value DESC"); // request all player information
+			var JsonArray = new Array(); 
+			var info = {data:JsonArray};
+			var Request = cnx.request("SELECT * FROM Player WHERE name ='" + name + "' ORDER by value DESC"); 
 			
 			
 			//request information from the table headings 
@@ -101,12 +126,17 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 				info.data.push({Name: row.name, Location: row.location, Value: row.value, Time: convertToHaxeDateTime(row.date)});
 			
 			}
-			Lib.print(Json.stringify(info)); //convert json information into string for parser to display data
+			Lib.print(Json.stringify(info)); 
 	}
 	
 
 
-//Delete a player from the table
+	/**
+	 * Function to return all data from leaderboard table by location
+	 * Create a new JSON array to store extracted data
+	 * After "info" in URL, store data 
+	 * Perform request to get all data macthing specfied ID the delete the data entry from the table
+	 */
 	public static function Delete(id:String)
 	{
 		var cnx = sys.db.Mysql.connect({
@@ -124,7 +154,13 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 			
 	}
 	
-//Get weekly score 
+	/**
+	 * Function to return all data from leaderboard table by location
+	 * Create a new JSON array to store extracted data
+	 * After "info" in URL, store data 
+	 * Perform request to get all data from the Player table where date matches most recent date and seven days before and put in descending order
+	 * Convert data to JSON string
+	 */
 	public static function Weekly()
 	{
 	var cnx = sys.db.Mysql.connect({
@@ -136,9 +172,9 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 			   socket : null,
 			});
 	
-			var JsonArray = new Array(); //create empty array to store json data
-			var info = {data:JsonArray}; // everything after "info" is stored in array
-			var Request = cnx.request("SELECT * FROM Player WHERE date BETWEEN'" + Date.fromTime(Date.now().getTime() - 7*24*3600*1000).toString() + "'AND'" + Date.now().toString() + "' ORDER by value DESC"); // request all player information
+			var JsonArray = new Array(); 
+			var info = {data:JsonArray}; 
+			var Request = cnx.request("SELECT * FROM Player WHERE date BETWEEN'" + Date.fromTime(Date.now().getTime() - 7*24*3600*1000).toString() + "'AND'" + Date.now().toString() + "' ORDER by value DESC"); 
 			
 			
 			//request information from the table headings 
@@ -146,11 +182,19 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 				info.data.push({Name: row.name, Location: row.location, Value: row.value, Time: convertToHaxeDateTime(row.date)});
 			
 			}
-			Lib.print(Json.stringify(info)); //convert json information into string for parser to display data
+			Lib.print(Json.stringify(info)); 
 			
 	}
 	
-	//Create backup file
+	/**
+	 * Function to get all data from leaderboard table
+	 * Create a new JSON array to store extracted data
+	 * After "info" in URL, store data 
+	 * Perform request to get all data from the Player table
+	 * Convert data to JSON string and create a save location
+	 * save the location with the JSON string
+	 * 
+	 */
 	public static function Backup()
 	{
 		var cnx = sys.db.Mysql.connect({
@@ -176,7 +220,7 @@ public static function convertToHaxeDateTime(s_date:SDateTime):Date
 			
 			
 			
-			File.saveContent("BackUp.JSON", saveInfo);
+			File.saveContent("BackUp.JSON", saveInfo); // saves the JSON string
 			
 	}
 	

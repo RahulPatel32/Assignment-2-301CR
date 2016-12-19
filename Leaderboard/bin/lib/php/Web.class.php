@@ -16,6 +16,57 @@ class php_Web {
 		$tmp = _hx_explode("?", $s);
 		return $tmp[0];
 	}
+	static function getClientHeader($k) {
+		$s = strtoupper($k);
+		$k1 = str_replace("-", "_", $s);
+		{
+			$tmp = php_Web::getClientHeaders()->iterator();
+			while(true) {
+				$tmp1 = !$tmp->hasNext();
+				if($tmp1) {
+					break;
+				}
+				$i = $tmp->next();
+				if($i->header === $k1) {
+					return $i->value;
+				}
+				unset($tmp1,$i);
+			}
+		}
+		return null;
+	}
+	static $_client_headers;
+	static function getClientHeaders() {
+		if(php_Web::$_client_headers === null) {
+			php_Web::$_client_headers = new HList();
+			$tmp = $_SERVER;
+			$h = php_Lib::hashOfAssociativeArray($tmp);
+			{
+				$tmp1 = $h->keys();
+				while(true) {
+					$tmp2 = !$tmp1->hasNext();
+					if($tmp2) {
+						break;
+					}
+					$k = $tmp1->next();
+					$tmp3 = _hx_substr($k, 0, 5);
+					if($tmp3 === "HTTP_") {
+						$tmp4 = _hx_substr($k, 5, null);
+						php_Web::$_client_headers->add(_hx_anonymous(array("header" => $tmp4, "value" => $h->get($k))));
+						unset($tmp4);
+					} else {
+						$tmp5 = _hx_substr($k, 0, 8);
+						if($tmp5 === "CONTENT_") {
+							php_Web::$_client_headers->add(_hx_anonymous(array("header" => $k, "value" => $h->get($k))));
+						}
+						unset($tmp5);
+					}
+					unset($tmp3,$tmp2,$k);
+				}
+			}
+		}
+		return php_Web::$_client_headers;
+	}
 	static $isModNeko;
 	function __toString() { return 'php.Web'; }
 }

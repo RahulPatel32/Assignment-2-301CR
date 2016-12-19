@@ -4,20 +4,25 @@
 class api_PlayerAPI {
 	public function __construct() {}
 	public function addPlayer() {
-		$p = new db_Player();
-		$data = php_Web::getParams();
-		$jsonData = $data->get("info");
-		$jsonString = haxe_Json::phpJsonDecode($jsonData);
-		$p->name = $jsonString->Name;
-		$p->location = $jsonString->Location;
-		$p->value = $jsonString->Value;
-		$tmp = Date::now();
-		$p->date = api_PlayerAPI::convertToSQLDateTime($tmp);
-		db_ConnectDatabase::Connect();
-		$p->insert();
-		db_ConnectDatabase::disconnect();
-		php_Lib::hprint("player added");
-		api_ReturnData::Backup();
+		$password = php_Web::getClientHeader("098Haxe098");
+		if($password === "GFJ4324ghjhRF") {
+			$p = new db_Player();
+			$data = php_Web::getParams();
+			$jsonData = $data->get("info");
+			$jsonString = haxe_Json::phpJsonDecode($jsonData);
+			$p->name = $jsonString->Name;
+			$p->location = $jsonString->Location;
+			$p->value = $jsonString->Value;
+			$tmp = Date::now();
+			$p->date = api_PlayerAPI::convertToSQLDateTime($tmp);
+			db_ConnectDatabase::Connect();
+			$p->insert();
+			db_ConnectDatabase::disconnect();
+			php_Lib::hprint("player added");
+			api_ReturnData::Backup();
+		} else {
+			php_Lib::hprint("Password not verified");
+		}
 	}
 	static function convertToSQLDateTime($h_date) {
 		$t_date = null;

@@ -11,3 +11,5 @@ Download the game then go to Assignment-2-301CR-master\Assignment-2-301CR-master
 If that doesn't work open the Visual studio solution file named Project4.sln . When you run the project the game should start.
 
 Extract Rahul Leaderboard test.zip then open Rahul Leaderboard test.flv to watch a video of the leaderboard being tested
+
+To test the leaderboard URL parameters use the documention in the repository named Leader board documentation.pdf

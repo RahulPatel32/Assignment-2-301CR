@@ -7,3 +7,4 @@ The Assignment required the creation and implementation of a Multiplayer Game, i
 as well as a leader board for storing things such as player scores and profile names etc.
 
 In order to run the programs...
+The game: download the Tic Tac Toe folder, and run the Visual studio solution file. When you run the project the game should start.
